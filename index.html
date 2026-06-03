@@ -2,159 +2,306 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Prospect Ink · Lead Portal</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Prospect Ink - Lead Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0a0a0a;--dark:#141414;--mid:#1e1e1e;--border:#2a2a2a;--muted:#666;--dim:#333;--white:#f5f5f0;--cream:#f0ede6;--ink:#111;--success:#1a7a4a;--purple:#7B2D8B}
-html,body{height:100%;background:var(--black)}
+:root{--black:#0a0a0a;--dark:#141414;--mid:#1e1e1e;--border:#2a2a2a;--muted:#666;--dim:#333;--white:#f5f5f0;--cream:#f0ede6;--ink:#111;--success:#1a7a4a}
+html,body{min-height:100%;background:var(--black)}
 body{font-family:'DM Sans',sans-serif;color:var(--white)}
-#login{min-height:100dvh;display:flex;flex-direction:column;align-items:center;padding:48px 20px 32px;background:var(--black)}
+#login{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:48px 20px 32px}
 .logo-wrap{text-align:center;margin-bottom:32px}
 .logo-img{height:32px;filter:invert(1) brightness(0.85);display:block;margin:0 auto 12px}
 .logo-div{width:36px;height:1px;background:var(--dim);margin:10px auto}
 .logo-sub{font-size:9px;letter-spacing:4px;color:var(--muted);text-transform:uppercase}
-.login-card{background:var(--dark);border:0.5px solid var(--border);border-radius:16px;padding:22px;width:100%;max-width:360px}
+.card{background:var(--dark);border:0.5px solid var(--border);border-radius:16px;padding:22px;width:100%;max-width:360px}
 .card-label{font-size:9px;letter-spacing:3px;color:var(--muted);text-align:center;margin-bottom:16px;text-transform:uppercase}
-.artist-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-.a-btn{padding:15px 8px;border:0.5px solid var(--border);background:var(--mid);border-radius:10px;color:#aaa;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;text-align:center;transition:all 0.15s}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.a-btn{padding:15px 8px;border:0.5px solid var(--border);background:var(--mid);border-radius:10px;color:#aaa;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;text-align:center}
 .a-btn.sel{border-color:rgba(255,255,255,0.4);color:var(--white);background:#252525}
-.pin-sec{display:none;margin-top:4px}
+.pin-sec{display:none}
 .pin-name{font-size:11px;color:var(--muted);text-align:center;margin-bottom:14px}
-.pin-name span{color:var(--white)}
+.pin-name b{color:var(--white)}
 .dots{display:flex;gap:14px;justify-content:center;margin-bottom:18px}
-.dot{width:12px;height:12px;border-radius:50%;border:0.5px solid #333}
-.dot.on{background:var(--white);border-color:var(--white)}
+.dot{width:12px;height:12px;border-radius:50%;border:0.5px solid #333;display:inline-block}
+.dot.on{background:var(--white)}
 .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .pk{padding:17px 8px;background:var(--mid);border:0.5px solid var(--border);border-radius:10px;color:#ccc;font-family:'Cormorant Garamond',serif;font-size:20px;cursor:pointer;text-align:center}
 .pk:active{transform:scale(0.94)}
 .pk.util{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--muted)}
-.pin-err{font-size:11px;color:#c0392b;text-align:center;margin-top:10px;min-height:16px}
-#dash{display:none;min-height:100dvh;background:var(--cream);flex-direction:column}
-.top-bar{background:var(--black);padding:0 16px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.perr{font-size:11px;color:#c0392b;text-align:center;margin-top:10px;min-height:16px}
+#dash{display:none;min-height:100vh;background:var(--cream);flex-direction:column}
+.top{background:var(--black);padding:0 16px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
 .top-logo{height:22px;filter:invert(1) brightness(0.85)}
 .top-who{font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
-.sign-out{font-size:9px;color:var(--muted);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;padding:6px 10px}
-.dash-body{padding:14px;flex:1}
-.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.top-out{font-size:9px;color:var(--muted);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;padding:6px}
+.body{padding:14px;flex:1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 .stat{background:#fff;border:0.5px solid #e0ddd6;border-radius:10px;padding:12px 10px;text-align:center}
 .stat-l{font-size:8px;letter-spacing:1px;color:#999;text-transform:uppercase;margin-bottom:2px}
 .stat-v{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--ink)}
 .stat-v.g{color:var(--success)}
-.filter-bar{display:flex;gap:6px;margin-bottom:10px;overflow-x:auto;padding:4px 0}
-.filter-bar::-webkit-scrollbar{display:none}
+.filters{display:flex;gap:6px;margin-bottom:10px;overflow-x:auto;padding:4px 0}
+.filters::-webkit-scrollbar{display:none}
 .fb{padding:5px 14px;border-radius:20px;border:0.5px solid #d8d4cc;background:#fff;font-size:10px;cursor:pointer;color:#888;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0}
-.fb.on{background:var(--black);color:#fff;border-color:var(--black)}
+.fb.on{background:var(--black);color:#fff}
 .srch{margin-bottom:12px}
 .srch input{width:100%;padding:9px 16px;border-radius:24px;border:0.5px solid #d8d4cc;background:#fff;font-size:13px;color:var(--ink);font-family:'DM Sans',sans-serif;outline:none}
 .leads{display:flex;flex-direction:column;gap:8px}
-.lr{background:#fff;border:0.5px solid #e8e4dc;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
-.lr-row1{display:flex;align-items:center;gap:8px}
+.lr{background:#fff;border:0.5px solid #e8e4dc;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.lr-r1{display:flex;align-items:center;gap:8px}
 .lr-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .lr-name{font-size:15px;font-weight:500;color:var(--ink);flex:1}
 .lr-tag{font-size:9px;padding:3px 8px;border-radius:6px;font-weight:500;text-transform:uppercase}
-.lr-date{font-size:10px;color:#ccc;flex-shrink:0}
+.lr-date{font-size:10px;color:#ccc}
 .lr-info{font-size:12px;color:#888}
-.lr-actions{display:flex;gap:8px}
-.ab{display:flex;align-items:center;justify-content:center;gap:5px;padding:10px;border-radius:10px;font-size:12px;font-family:'DM Sans',sans-serif;text-decoration:none;border:0.5px solid;font-weight:500;flex:1}
-.ab-email{color:#1a4f8a;border-color:#c5d8f0;background:#eef4fb}
-.ab-sms{color:#1a6b42;border-color:#b8deca;background:#edf7f2}
-.ab-call{color:#b86e00;border-color:#f0ddb8;background:#fdf5e6}
-.lr-status{width:100%;font-size:13px;padding:10px 12px;border-radius:10px;border:0.5px solid #ddd;background:#f8f5f0;cursor:pointer;font-family:'DM Sans',sans-serif;outline:none}
+.lr-acts{display:flex;gap:8px}
+.ab{display:flex;align-items:center;justify-content:center;padding:10px;border-radius:10px;font-size:12px;font-family:'DM Sans',sans-serif;text-decoration:none;border:0.5px solid;font-weight:500;flex:1}
+.em{color:#1a4f8a;border-color:#c5d8f0;background:#eef4fb}
+.sm{color:#1a6b42;border-color:#b8deca;background:#edf7f2}
+.ca{color:#b86e00;border-color:#f0ddb8;background:#fdf5e6}
+.lr-st{width:100%;font-size:13px;padding:10px;border-radius:10px;border:0.5px solid #ddd;background:#f8f5f0;cursor:pointer;font-family:'DM Sans',sans-serif;outline:none}
 .empty{text-align:center;padding:3rem;color:#bbb;font-size:14px}
-.pi-footer{text-align:center;padding:18px;font-size:9px;letter-spacing:2px;color:#bbb;text-transform:uppercase;border-top:0.5px solid #e0ddd6;background:#ebe8e0}
-.pi-footer img{height:14px;filter:opacity(0.2);display:block;margin:0 auto 8px}
+.footer{text-align:center;padding:18px;font-size:9px;letter-spacing:2px;color:#bbb;text-transform:uppercase;border-top:0.5px solid #e0ddd6;background:#ebe8e0}
+.footer img{height:14px;filter:opacity(0.2);display:block;margin:0 auto 8px}
 </style>
 </head>
 <body>
 <div id="login">
   <div class="logo-wrap">
-    <img class="logo-img" src="https://static.wixstatic.com/media/273854_ceedbd077e164860acd9cb4538d9cc66~mv2.png/v1/fill/w_183,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prospect%20Ink%20Logo%20Blackmdpi.png" alt="Prospect Ink"/>
+    <img class="logo-img" src="https://static.wixstatic.com/media/273854_ceedbd077e164860acd9cb4538d9cc66~mv2.png/v1/fill/w_183,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prospect%20Ink%20Logo%20Blackmdpi.png" alt="PI"/>
     <div class="logo-div"></div>
     <div class="logo-sub">Lead Portal &middot; La Jolla, CA</div>
   </div>
-  <div class="login-card">
+  <div class="card">
     <div class="card-label">Select your name</div>
-    <div class="artist-grid" id="agrid"></div>
+    <div class="agrid">
+      <button class="a-btn" onclick="pick('Admin',this)">Admin</button>
+      <button class="a-btn" onclick="pick('Douglas',this)">Douglas</button>
+      <button class="a-btn" onclick="pick('Pedro',this)">Pedro</button>
+      <button class="a-btn" onclick="pick('Joice',this)">Joice</button>
+      <button class="a-btn" onclick="pick('Bo',this)">Bo</button>
+      <button class="a-btn" onclick="pick('Samara',this)">Samara</button>
+      <button class="a-btn" onclick="pick('Kamryn',this)">Kamryn</button>
+      <button class="a-btn" onclick="pick('Ivan',this)">Ivan</button>
+      <button class="a-btn" onclick="pick('Muchy',this)">Muchy</button>
+    </div>
     <div class="pin-sec" id="psec">
-      <div class="pin-name">PIN for <span id="pname"></span></div>
-      <div class="dots"><div class="dot" id="d0"></div><div class="dot" id="d1"></div><div class="dot" id="d2"></div><div class="dot" id="d3"></div></div>
+      <div class="pin-name">PIN for <b id="pname"></b></div>
+      <div class="dots"><span class="dot" id="d0"></span><span class="dot" id="d1"></span><span class="dot" id="d2"></span><span class="dot" id="d3"></span></div>
       <div class="pad">
-        <button class="pk" onclick="k('1')">1</button><button class="pk" onclick="k('2')">2</button><button class="pk" onclick="k('3')">3</button>
-        <button class="pk" onclick="k('4')">4</button><button class="pk" onclick="k('5')">5</button><button class="pk" onclick="k('6')">6</button>
-        <button class="pk" onclick="k('7')">7</button><button class="pk" onclick="k('8')">8</button><button class="pk" onclick="k('9')">9</button>
-        <button class="pk util" onclick="k('clr')">CLR</button><button class="pk" onclick="k('0')">0</button><button class="pk util" onclick="k('del')">&#9003;</button>
+        <button class="pk" onclick="k(1)">1</button><button class="pk" onclick="k(2)">2</button><button class="pk" onclick="k(3)">3</button>
+        <button class="pk" onclick="k(4)">4</button><button class="pk" onclick="k(5)">5</button><button class="pk" onclick="k(6)">6</button>
+        <button class="pk" onclick="k(7)">7</button><button class="pk" onclick="k(8)">8</button><button class="pk" onclick="k(9)">9</button>
+        <button class="pk util" onclick="clr()">CLR</button><button class="pk" onclick="k(0)">0</button><button class="pk util" onclick="del()">&#9003;</button>
       </div>
-      <div id="perr" class="pin-err"></div>
+      <div class="perr" id="perr"></div>
     </div>
   </div>
 </div>
 <div id="dash">
-  <div class="top-bar">
-    <img class="top-logo" src="https://static.wixstatic.com/media/273854_ceedbd077e164860acd9cb4538d9cc66~mv2.png/v1/fill/w_183,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prospect%20Ink%20Logo%20Blackmdpi.png" alt="Prospect Ink"/>
+  <div class="top">
+    <img class="top-logo" src="https://static.wixstatic.com/media/273854_ceedbd077e164860acd9cb4538d9cc66~mv2.png/v1/fill/w_183,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prospect%20Ink%20Logo%20Blackmdpi.png" alt="PI"/>
     <div class="top-who" id="who"></div>
-    <button class="sign-out" onclick="logout()">Sign Out</button>
+    <button class="top-out" onclick="out()">Sign Out</button>
   </div>
-  <div class="dash-body">
-    <div class="stat-row" id="stats"></div>
-    <div class="filter-bar" id="fltrs"></div>
-    <div class="srch"><input placeholder="Search leads..." oninput="setSrch(this.value)"/></div>
+  <div class="body">
+    <div class="stats" id="stats"></div>
+    <div class="filters" id="fltrs"></div>
+    <div class="srch"><input id="sinp" placeholder="Search..." oninput="search(this.value)"/></div>
     <div class="leads" id="leads"></div>
   </div>
-  <div class="pi-footer">
-    <img src="https://static.wixstatic.com/media/273854_ceedbd077e164860acd9cb4538d9cc66~mv2.png/v1/fill/w_183,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prospect%20Ink%20Logo%20Blackmdpi.png" alt="Prospect Ink"/>
+  <div class="footer">
+    <img src="https://static.wixstatic.com/media/273854_ceedbd077e164860acd9cb4538d9cc66~mv2.png/v1/fill/w_183,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prospect%20Ink%20Logo%20Blackmdpi.png" alt="PI"/>
     1224 Prospect St &middot; Suite 150 &middot; La Jolla, CA 92037
   </div>
 </div>
 <script>
-var PINS={Admin:"0000",Douglas:"1234",Pedro:"2345",Joice:"3456",Bo:"4567",Samara:"5678",Kamryn:"6789",Ivan:"7890",Muchy:"8901"};
-var COL={Douglas:{dot:"#1F4E79",bg:"#D6E4F0",tx:"#1F4E79"},Pedro:{dot:"#375623",bg:"#E2EFDA",tx:"#375623"},Joice:{dot:"#7B2D8B",bg:"#F3E5F5",tx:"#7B2D8B"},Bo:{dot:"#B45309",bg:"#FDEBD0",tx:"#B45309"},Samara:{dot:"#6D4C41",bg:"#EFEBE9",tx:"#6D4C41"},Kamryn:{dot:"#8B4513",bg:"#F5E6D3",tx:"#8B4513"},Ivan:{dot:"#1a1a2e",bg:"#e8e8f0",tx:"#1a1a2e"},Muchy:{dot:"#C2185B",bg:"#fce4ec",tx:"#C2185B"}};
-var STCOL={New:"#1a4f8a",Contacted:"#b86e00",Responded:"#333",Consultation:"#7B2D8B",Closed:"#1a6b42","No Response":"#aaa"};
-var STATUSES=["New","Contacted","Responded","Consultation","Closed","No Response"];
-var ALL=[{"id": "l0", "artist": "Douglas", "name": "Emerson Rosales", "email": "Emersonrosales77@gmail.com", "phone": "+16199713025", "city": "San Diego Country Estates", "date": "Apr 30"}, {"id": "l1", "artist": "Pedro", "name": "Jasmin Nicole", "email": "jasminrivas217@gmail.com", "phone": "+13614458984", "city": "Corpus Christi", "date": "Apr 30"}, {"id": "l2", "artist": "Douglas", "name": "Fernando Revilla", "email": "fernando.revillar@gmail.com", "phone": "+16199519816", "city": "Oceanside", "date": "Apr 30"}, {"id": "l3", "artist": "Joice", "name": "Stephany Flores", "email": "stephanyflores1220@gmail.com", "phone": "+16196652213", "city": "San Diego", "date": "May 1"}, {"id": "l4", "artist": "Joice", "name": "Kevin K.", "email": "otkaylor@att.net", "phone": "+17607154659", "city": "San Diego", "date": "May 1"}, {"id": "l5", "artist": "Pedro", "name": "Miriam Lynn Wright", "email": "adivinemissm31@yahoo.com", "phone": "+17609947711", "city": "Oceanside", "date": "May 1"}, {"id": "l6", "artist": "Pedro", "name": "Elizabeth Rivera", "email": "elizabethrivera52@yahoo.com", "phone": "+13103446640", "city": "San Pedro", "date": "May 2"}, {"id": "l7", "artist": "Douglas", "name": "Ricardo Sanchez", "email": "ricky642004@yahoo.com", "phone": "+16193864557", "city": "Chula Vista", "date": "May 2"}, {"id": "l8", "artist": "Joice", "name": "Lindy Evans", "email": "elindy118@gmail.com", "phone": "+16188306857", "city": "Trenton", "date": "May 3"}, {"id": "l9", "artist": "Douglas", "name": "Curtis Turley", "email": "curtturley@icloud.com", "phone": "+18312911328", "city": "Santa Cruz", "date": "May 3"}, {"id": "l10", "artist": "Pedro", "name": "Cari Shaw", "email": "Sheashope48@gmail.com", "phone": "+14084821942", "city": "San Jose", "date": "May 3"}, {"id": "l11", "artist": "Pedro", "name": "mdsd", "email": "rezbabe760@gmail.com", "phone": "+17605330956", "city": "Santa Ysabel", "date": "May 4"}, {"id": "l12", "artist": "Pedro", "name": "Andrew Candelario", "email": "candelarioandrew@yahoo.com", "phone": "+18318094733", "city": "San Diego", "date": "May 4"}, {"id": "l13", "artist": "Joice", "name": "Angela Hurtado", "email": "angelaboost932@gmail.com", "phone": "+18089891416", "city": "National City", "date": "May 5"}, {"id": "l14", "artist": "Pedro", "name": "Denetria Martini-Jefferson", "email": "deedee619.47dmj@gmail.com", "phone": "+16193625839", "city": "San Diego", "date": "May 6"}, {"id": "l15", "artist": "Joice", "name": "Rubie", "email": "rubie.d.owens@gmail.com", "phone": "+16196072295", "city": "Alpine", "date": "May 6"}, {"id": "l16", "artist": "Pedro", "name": "Dellanira Galindo", "email": "dellaniragalindo00@gmail.com", "phone": "+19562567008", "city": "McAllen", "date": "May 7"}, {"id": "l17", "artist": "Douglas", "name": "Sam", "email": "Samrosa139@gmail.com", "phone": "+17728996177", "city": "Port Saint Lucie", "date": "May 7"}, {"id": "l18", "artist": "Douglas", "name": "Keri Grendysa", "email": "kerideanng76@gmail.com", "phone": "+16196774074", "city": "San Diego", "date": "May 7"}, {"id": "l19", "artist": "Douglas", "name": "Francisco Mendez", "email": "fcobelen@gmail.com", "phone": "+15596996016", "city": "Visalia", "date": "May 8"}, {"id": "l20", "artist": "Douglas", "name": "David Allen Coy", "email": "suprtruk64@aol.com", "phone": "+16199940353", "city": "Descanso", "date": "May 8"}, {"id": "l21", "artist": "Douglas", "name": "Jess W Davis", "email": "jesswdavis78@yahoo.com", "phone": "+16193682844", "city": "Santee", "date": "May 8"}, {"id": "l22", "artist": "Douglas", "name": "Daniel John Castill", "email": "latenitelvr@gmail.com", "phone": "+16192031756", "city": "National City", "date": "May 9"}, {"id": "l23", "artist": "Douglas", "name": "Charlotte Head", "email": "carlhead@gmail.com", "phone": "+16414361267", "city": "Centerville", "date": "May 9"}, {"id": "l24", "artist": "Pedro", "name": "David Jermark", "email": "dhermark@yahoo.com", "phone": "+17608097695", "city": "Carlsbad", "date": "May 10"}, {"id": "l25", "artist": "Douglas", "name": "Carlos Salinas", "email": "Salinasrbny@gmail.com", "phone": "+13475566036", "city": "San Diego", "date": "May 10"}, {"id": "l26", "artist": "Joice", "name": "Jasmin Lamanna", "email": "jasmin.lamanna@gmail.com", "phone": "+12103932847", "city": "San Diego", "date": "May 10"}, {"id": "l27", "artist": "Douglas", "name": "Ivan Gomez", "email": "Ivangomez081991@gmail.com", "phone": "+15096287383", "city": "Richland WA", "date": "May 11"}, {"id": "l28", "artist": "Douglas", "name": "Joe Tabrisky", "email": "jtabrisky409@gmail.com", "phone": "+13107507198", "city": "Los Angeles", "date": "May 11"}, {"id": "l29", "artist": "Pedro", "name": "Lobo Solitario Sol", "email": "0041lobosolitario@gmail.com", "phone": "+16196395995", "city": "El Cajon", "date": "May 11"}, {"id": "l30", "artist": "Joice", "name": "Shannon M Berglund", "email": "Shanninpinkjs@gmail.com", "phone": "+16197573668", "city": "Ocean Beach", "date": "May 11"}, {"id": "l31", "artist": "Pedro", "name": "Alejandro Zamora", "email": "zamoraleonalejandr77@gmail.com", "phone": "+14422343360", "city": "San Diego", "date": "May 11"}, {"id": "l32", "artist": "Joice", "name": "Suzette Martino", "email": "suzmartino@gmail.com", "phone": "+16196108245", "city": "El Cajon", "date": "May 11"}, {"id": "l33", "artist": "Joice", "name": "Marge Moretti", "email": "marjory.moretti@yahoo.com", "phone": "+14802355980", "city": "San Diego", "date": "May 12"}, {"id": "l34", "artist": "Douglas", "name": "Steven Davinger", "email": "stevedavinger@gmail.com", "phone": "+13174739800", "city": "San Diego", "date": "May 12"}, {"id": "l35", "artist": "Douglas", "name": "Eduardo Ramirez", "email": "ediiramsescastle@gmail.com", "phone": "+19565030749", "city": "Alton", "date": "May 13"}, {"id": "l36", "artist": "Pedro", "name": "Billy A. Valo", "email": "countvalo@gmail.com", "phone": "+15868429360", "city": "Macomb Township", "date": "May 13"}, {"id": "l37", "artist": "Pedro", "name": "Darioo Rivera", "email": "darioo1946@gmail.com", "phone": "+17143950730", "city": "California City", "date": "May 13"}, {"id": "l38", "artist": "Douglas", "name": "Adriana Cruz", "email": "konny_daf98@hotmail.com", "phone": "+16267471212", "city": "California", "date": "May 14"}, {"id": "l39", "artist": "Douglas", "name": "Evarette Davis-Green", "email": "greenAcreschildcare123@gmail.com", "phone": "+16208704144", "city": "Coffeyville", "date": "May 14"}, {"id": "l40", "artist": "Pedro", "name": "Lee Green", "email": "greenfatboy19731@yahoo.com", "phone": "+13188845782", "city": "West Monroe", "date": "May 14"}, {"id": "l41", "artist": "Douglas", "name": "Steve Gill", "email": "juilio6429@gmail.com", "phone": "+12172401944", "city": "Saint Elmo", "date": "May 15"}, {"id": "l42", "artist": "Pedro", "name": "Gerry Castro", "email": "gscastro49@gmail.com", "phone": "+13479653613", "city": "New York", "date": "May 15"}, {"id": "l43", "artist": "Douglas", "name": "Thomas Moxley", "email": "tmoxley960@gmail.com", "phone": "+15206782056", "city": "Sierra Vista", "date": "May 15"}, {"id": "l44", "artist": "Pedro", "name": "David Rose", "email": "Drose70@gmail.com", "phone": "+16198072109", "city": "San Diego", "date": "May 15"}, {"id": "l45", "artist": "Joice", "name": "Denise Diaz", "email": "denise_diaz85@yahoo.com", "phone": "+18182683290", "city": "Escondido", "date": "May 16"}, {"id": "l46", "artist": "Joice", "name": "Ronald Wilkinson", "email": "lowfiron@gmail.com", "phone": "+16192598747", "city": "National City", "date": "May 16"}, {"id": "l47", "artist": "Douglas", "name": "Jesus Rodriguez Quijada", "email": "rodriguezjesush@gmail.com", "phone": "+16196641020", "city": "San Diego", "date": "May 17"}, {"id": "l48", "artist": "Pedro", "name": "Tyrone White", "email": "unkcudda@gmail.com", "phone": "+12294560787", "city": "Moultrie", "date": "May 17"}, {"id": "l49", "artist": "Douglas", "name": "Kelly Van Camp", "email": "kvancamp67@gmail.com", "phone": "+16815825711", "city": "Huntington", "date": "May 17"}, {"id": "l50", "artist": "Pedro", "name": "Murrel Wayne Vailes", "email": "murrelvailes602@gmail.com", "phone": "+16193179514", "city": "San Diego", "date": "May 17"}, {"id": "l51", "artist": "Douglas", "name": "Jennifer Wieber", "email": "jenn.videko4@gmail.com", "phone": "+19205795691", "city": "Shawano", "date": "May 17"}, {"id": "l52", "artist": "Douglas", "name": "Leanna Brown", "email": "leanna.brown10@gmail.com", "phone": "+19853735244", "city": "San Diego", "date": "May 17"}, {"id": "l53", "artist": "Douglas", "name": "Andrea Nicolas", "email": "Andreanicolas@sbcglobal.net", "phone": "+17143662395", "city": "Brea", "date": "May 17"}, {"id": "l54", "artist": "Pedro", "name": "Myjorge Hernandez", "email": "ortizjorge620@gmail.com", "phone": "+12392719005", "city": "Key West", "date": "May 17"}, {"id": "l55", "artist": "Joice", "name": "Joe Gentillalli", "email": "joegentillalli@me.com", "phone": "+16199855205", "city": "San Diego", "date": "May 17"}, {"id": "l56", "artist": "Joice", "name": "Mick Evans", "email": "mickthecod@gmail.com", "phone": "+15038102586", "city": "Tigard", "date": "May 17"}, {"id": "l57", "artist": "Pedro", "name": "Stephen Huss", "email": "stephenhuss619@gmail.com", "phone": "+16197483639", "city": "Chula Vista", "date": "May 17"}, {"id": "l58", "artist": "Douglas", "name": "Launye Carter", "email": "Carterlc64@yahoo.com", "phone": "+18582054246", "city": "National City", "date": "May 18"}, {"id": "l59", "artist": "Douglas", "name": "Louie Juanengo", "email": "louiejuanengo@yahoo.com", "phone": "+18589007812", "city": "San Diego", "date": "May 18"}, {"id": "l60", "artist": "Douglas", "name": "Richard Delao", "email": "richarddelao44@icloud.com", "phone": "+16199889463", "city": "Jamul", "date": "May 18"}, {"id": "l61", "artist": "Douglas", "name": "Cesar Adriel Romero", "email": "Adriel.romero2@icloud.com", "phone": "+523347176221", "city": "San Diego", "date": "May 19"}, {"id": "l62", "artist": "Pedro", "name": "Richard Baxter", "email": "ib.richardbaxter@gmail.com", "phone": "+15623350389", "city": "Long Beach", "date": "May 20"}, {"id": "l63", "artist": "Douglas", "name": "Nick Mathes", "email": "holloweennitemare89@gmail.com", "phone": "+13177561667", "city": "Indianapolis", "date": "May 20"}, {"id": "l64", "artist": "Douglas", "name": "Robert M Cannon", "email": "Cannonrm@hotmail.com", "phone": "+17607249258", "city": "Vista", "date": "May 20"}, {"id": "l65", "artist": "Samara", "name": "Mc Kulet", "email": "moselina_15@yahoo.com", "phone": "+16197914344", "city": "National City", "date": "May 21"}, {"id": "l66", "artist": "Joice", "name": "Mike Roman", "email": "romee2572@yahoo.com", "phone": "+17604151371", "city": "San Diego", "date": "May 21"}, {"id": "l67", "artist": "Samara", "name": "Claudia Guillen", "email": "caguillen1981@gmail.com", "phone": "+19099970201", "city": "Pomona", "date": "May 21"}, {"id": "l68", "artist": "Douglas", "name": "Tee Reva Foreman", "email": "therevaf@yahoo.com", "phone": "+15044939125", "city": "San Diego", "date": "May 21"}, {"id": "l69", "artist": "Joice", "name": "Annie Korn", "email": "anniekorn@gmail.com", "phone": "+16199294660", "city": "San Diego", "date": "May 22"}, {"id": "l70", "artist": "Bo", "name": "Gerald Quaco", "email": "quacogerald61@gmail.com", "phone": "+19514189749", "city": "Reno", "date": "May 22"}, {"id": "l71", "artist": "Douglas", "name": "Anthony Wayne Horan", "email": "two.tone_jones@yahoo.com", "phone": "+12317364216", "city": "Virginia Beach", "date": "May 22"}, {"id": "l72", "artist": "Pedro", "name": "Ana Pagan", "email": "mommadukes2598@yahoo.com", "phone": "+17187044664", "city": "Brooklyn", "date": "May 22"}, {"id": "l73", "artist": "Pedro", "name": "Alvin Findley", "email": "alvin.findley1@gmail.com", "phone": "+19088215505", "city": "District Heights", "date": "May 22"}, {"id": "l74", "artist": "Douglas", "name": "Philip Ziganto", "email": "pziganto@gmail.com", "phone": "+18643860618", "city": "Greenville", "date": "May 22"}, {"id": "l75", "artist": "Kamryn", "name": "Robert Snyder", "email": "snyderrobert214@gmail.com", "phone": "+16198232753", "city": "San Diego", "date": "May 22"}, {"id": "l76", "artist": "Joice", "name": "Gina Patrick-West", "email": "obdragonfly@gmail.com", "phone": "+16024132065", "city": "San Diego", "date": "May 23"}, {"id": "l77", "artist": "Joice", "name": "Christine Lavoie", "email": "cal1524@icloud.com", "phone": "+17604155822", "city": "Ramona", "date": "May 23"}, {"id": "l78", "artist": "Joice", "name": "Margery Amparo", "email": "jojorizal1@yahoo.com", "phone": "+17604502822", "city": "Oceanside", "date": "May 23"}, {"id": "l79", "artist": "Bo", "name": "Ramon Rosario", "email": "rosariorlr@outlook.com", "phone": "+15613886363", "city": "Schofield Barracks", "date": "May 23"}, {"id": "l80", "artist": "Kamryn", "name": "Christian Villegas", "email": "chris.villegas.tamayo@gmail.com", "phone": "+16199176955", "city": "San Diego", "date": "May 23"}, {"id": "l81", "artist": "Samara", "name": "Joel Morones", "email": "joelmorones456@yahoo.com", "phone": "+17133822351", "city": "Houston", "date": "May 23"}, {"id": "l82", "artist": "Joice", "name": "Tracy George", "email": "tracygeorge1344@gmail.com", "phone": "+13082937267", "city": "Carlsbad", "date": "May 23"}, {"id": "l83", "artist": "Bo", "name": "Lacey Ramos", "email": "351lace@gmail.com", "phone": "+16193722430", "city": "San Diego", "date": "May 24"}, {"id": "l84", "artist": "Pedro", "name": "Dillard Johnson", "email": "dillardj2198@gmail.com", "phone": "+13343929152", "city": "Montgomery", "date": "May 24"}, {"id": "l85", "artist": "Pedro", "name": "Alice Bailey", "email": "alicebailey873@gmail.com", "phone": "+18058309115", "city": "Other", "date": "May 24"}, {"id": "l86", "artist": "Douglas", "name": "Kim McCormick", "email": "kim79ta@aol.com", "phone": "+19788884583", "city": "Center Tuftonboro", "date": "May 24"}, {"id": "l87", "artist": "Pedro", "name": "Margie McGinnis-Brown", "email": "mcginnisbrownm@gmail.com", "phone": "+12537205493", "city": "Covington", "date": "May 24"}, {"id": "l88", "artist": "Bo", "name": "Clay Vern Chipman", "email": "clayvchipman@gmail.com", "phone": "+13859857168", "city": "Provo", "date": "May 24"}, {"id": "l89", "artist": "Samara", "name": "Linda Olivarria", "email": "lind4oli10@gmail.com", "phone": "+16192144743", "city": "San Diego", "date": "May 24"}, {"id": "l90", "artist": "Pedro", "name": "Jesus Islavaclarkdale", "email": "trabolta1313@gmail.com", "phone": "+19282746084", "city": "Clarkdale AZ", "date": "May 24"}, {"id": "l91", "artist": "Joice", "name": "Jamie Dick", "email": "Jamiedick1951@gmail.com", "phone": "+18587355963", "city": "San Diego", "date": "May 24"}, {"id": "l92", "artist": "Kamryn", "name": "Scott Mailly", "email": "scottyschmidty28@gmail.com", "phone": "+19495561076", "city": "Los Angeles", "date": "May 25"}, {"id": "l93", "artist": "Bo", "name": "Brandy OBray", "email": "brandyobray8@gmail.com", "phone": "+17144032342", "city": "Laguna Niguel", "date": "May 25"}, {"id": "l94", "artist": "Joice", "name": "Ramon Cabal", "email": "ramoncabal@ymail.com", "phone": "+16193661292", "city": "Chula Vista", "date": "May 25"}, {"id": "l95", "artist": "Kamryn", "name": "David Montajes", "email": "dmontajes56@gmail.com", "phone": "+16199408458", "city": "Chula Vista", "date": "May 25"}, {"id": "l96", "artist": "Joice", "name": "Elizabeth Bracmontez", "email": "elizbeth.brac9311@gmail.com", "phone": "+18052583976", "city": "Oxnard", "date": "May 25"}, {"id": "l97", "artist": "Pedro", "name": "Kellie Kay", "email": "kelliek334@gmail.com", "phone": "+19285095553", "city": "Yuma", "date": "May 25"}, {"id": "l98", "artist": "Douglas", "name": "Elliot Shep", "email": "elliotsteinwedell91@gmail.com", "phone": "+16265320454", "city": "Lake Forest", "date": "May 25"}, {"id": "l99", "artist": "Douglas", "name": "Sandy Coffman", "email": "sandycoffman44@gmail.com", "phone": "+14173967018", "city": "Joplin", "date": "May 25"}, {"id": "l100", "artist": "Kamryn", "name": "Micah Greer", "email": "micahboydgreer@gmail.com", "phone": "+17576523502", "city": "Virginia Beach", "date": "May 25"}, {"id": "l101", "artist": "Samara", "name": "Anthony McMillan", "email": "McMillanAnthony53@gmail.com", "phone": "+15107760268", "city": "Vallejo", "date": "May 25"}, {"id": "l102", "artist": "Pedro", "name": "Martha Battle", "email": "battlemartha15@gmail.com", "phone": "+12524528894", "city": "Tarboro", "date": "May 25"}, {"id": "l103", "artist": "Pedro", "name": "Christine Hillesheim", "email": "hillesheim7@icloud.com", "phone": "+15073293586", "city": "Worthington", "date": "May 25"}, {"id": "l104", "artist": "Douglas", "name": "Raymond Rios", "email": "rdrios61@hotmail.com", "phone": "+15203329266", "city": "Tucson", "date": "May 25"}, {"id": "l105", "artist": "Kamryn", "name": "Edwin Duarte", "email": "edwinduarte1258@gmail.com", "phone": "+13237706651", "city": "Los Angeles", "date": "May 25"}, {"id": "l106", "artist": "Pedro", "name": "Claudia Jones", "email": "claudiaj196923@gmail.com", "phone": "+16193437897", "city": "San Diego", "date": "May 26"}, {"id": "l107", "artist": "Douglas", "name": "Jason Grimes", "email": "Grimes70@gmail.com", "phone": "+16182002947", "city": "West Frankfort", "date": "May 26"}, {"id": "l108", "artist": "Kamryn", "name": "Lamont Hall", "email": "jungle200415@gmail.com", "phone": "+17079919530", "city": "San Rafael", "date": "May 26"}, {"id": "l109", "artist": "Samara", "name": "Robert Hamor", "email": "robertchamor@outlook.com", "phone": "+13605362426", "city": "Poulsbo", "date": "May 26"}, {"id": "l110", "artist": "Kamryn", "name": "Oscar Chavez", "email": "oscarchavez98@yahoo.com", "phone": "+16198654629", "city": "Chula Vista", "date": "May 26"}, {"id": "l111", "artist": "Joice", "name": "Wilbur Judycki", "email": "w.judycki@gmail.com", "phone": "+16194961216", "city": "San Diego", "date": "May 26"}, {"id": "l112", "artist": "Samara", "name": "Gustavo Bazo", "email": "bazogus@yahoo.com", "phone": "+16193951047", "city": "Chula Vista", "date": "May 27"}, {"id": "l113", "artist": "Douglas", "name": "Matthew Pasculli", "email": "Matthewpasculli@gmail.com", "phone": "+18315852231", "city": "San Diego", "date": "May 27"}, {"id": "l114", "artist": "Bo", "name": "Chonni Manley", "email": "manleychonni3@gmail.com", "phone": "+16195589208", "city": "San Diego", "date": "May 27"}, {"id": "l115", "artist": "Douglas", "name": "Robb S. Perez", "email": "robbdiegoperez16@yahoo.com", "phone": "+19563349387", "city": "Laredo", "date": "May 27"}, {"id": "l116", "artist": "Douglas", "name": "Brad Bryant", "email": "bradley.btyant@gmail.com", "phone": "+12054405050", "city": "J Town", "date": "May 27"}, {"id": "l117", "artist": "Pedro", "name": "Steven Robinson", "email": "Strobinson25@yahoo.com", "phone": "+17733660429", "city": "Chicago Ridge", "date": "May 27"}, {"id": "l118", "artist": "Douglas", "name": "Amanda Olivares", "email": "mandismilesxd@gmail.com", "phone": "+16086366712", "city": "San Diego", "date": "May 27"}, {"id": "l119", "artist": "Joice", "name": "Jesus Solorzano", "email": "jesussol30@gmail.com", "phone": "+19282569893", "city": "Yuma", "date": "May 27"}, {"id": "l120", "artist": "Bo", "name": "Sharyl Yanez", "email": "sayfourh1966@live.com", "phone": "+17604847483", "city": "Ramona", "date": "May 27"}, {"id": "l121", "artist": "Douglas", "name": "Mabelle Harris", "email": "mabelleharris@gmail.com", "phone": "+12072992889", "city": "Bangor", "date": "May 28"}, {"id": "l122", "artist": "Douglas", "name": "Wesley Mowris", "email": "wawam6322@gmail.com", "phone": "+18457056322", "city": "RedHook", "date": "May 28"}, {"id": "l123", "artist": "Pedro", "name": "Deon Jones", "email": "demack1.dj@gmail.com", "phone": "+13233453756", "city": "Los Angeles", "date": "May 28"}, {"id": "l124", "artist": "Douglas", "name": "Mick MacGregor", "email": "mikaelemacgregor700@gmail.com", "phone": "+18582478045", "city": "San Diego", "date": "May 28"}, {"id": "l125", "artist": "Pedro", "name": "Aaron Hicks", "email": "aaronhicks281@gmail.com", "phone": "+16194156135", "city": "San Diego", "date": "May 28"}, {"id": "l126", "artist": "Joice", "name": "Cecilia Diane McMorris", "email": "mcmce_1@cox.net", "phone": "+16199199887", "city": "National City", "date": "May 29"}, {"id": "l127", "artist": "Pedro", "name": "Lizzie Montrose", "email": "Montrose65liz@gmail.com", "phone": "+15098566414", "city": "Spokane Valley", "date": "May 29"}, {"id": "l128", "artist": "Kamryn", "name": "Presley Brown", "email": "Presleybrown2@yahoo.com", "phone": "+17607078586", "city": "Oceanside", "date": "May 29"}, {"id": "l129", "artist": "Douglas", "name": "David Jackson", "email": "david.jackson@email.bakersfieldcollege.edu", "phone": "+16614077312", "city": "Bakersfield", "date": "May 29"}, {"id": "l130", "artist": "Kamryn", "name": "Lm Quintanilla", "email": "lopezleo199405@icloud.com", "phone": "+14424425956", "city": "Encinitas", "date": "May 29"}, {"id": "l131", "artist": "Bo", "name": "Christine Gillespie", "email": "blovesmom.cg@gmail.com", "phone": "+16197358081", "city": "El Cajon", "date": "May 29"}, {"id": "l132", "artist": "Kamryn", "name": "Cheryl Smith", "email": "cheryl_ann48@yahoo.com", "phone": "+16197158950", "city": "San Diego", "date": "May 30"}, {"id": "l133", "artist": "Samara", "name": "Thonghane Sanvichith", "email": "Sthonghane@yahoo.com", "phone": "+16198610690", "city": "San Diego", "date": "May 30"}, {"id": "l134", "artist": "Samara", "name": "Jose Alvardo", "email": "jalvardo291@gmail.com", "phone": "+16198556273", "city": "San Diego", "date": "May 30"}, {"id": "l135", "artist": "Bo", "name": "Rafael Flores", "email": "rafaelflores10211021@gmail.com", "phone": "+14808236524", "city": "El Mirage", "date": "May 31"}, {"id": "l136", "artist": "Kamryn", "name": "Kelly Kuchta", "email": "kellyannk81@gmail.com", "phone": "+16197166755", "city": "El Cajon", "date": "May 31"}, {"id": "l137", "artist": "Bo", "name": "Tom Mcleod", "email": "mcleodtom0@gmail.com", "phone": "+16196748383", "city": "San Diego", "date": "Jun 1"}, {"id": "l138", "artist": "Kamryn", "name": "Monzon Santiago", "email": "jacintosantiago3@gmail.com", "phone": "+16198441017", "city": "San Diego", "date": "Jun 1"}, {"id": "l139", "artist": "Bo", "name": "Steve Murphy", "email": "sjm56304@gmail.com", "phone": "+13203099160", "city": "Sartell", "date": "Jun 2"}];
-var user=null,selA=null,pin="",fA="all",srch="";
-var sts=JSON.parse(localStorage.getItem("pi_v6")||"{}");
-function save(){localStorage.setItem("pi_v6",JSON.stringify(sts))}
-var ag=document.getElementById("agrid");
-Object.keys(PINS).forEach(function(a){var b=document.createElement("button");b.className="a-btn";b.textContent=a;b.onclick=(function(n,btn){return function(){pick(n,btn)}})(a,b);ag.appendChild(b)});
-function pick(name,btn){selA=name;pin="";document.querySelectorAll(".a-btn").forEach(function(b){b.classList.remove("sel")});btn.classList.add("sel");document.getElementById("pname").textContent=name;document.getElementById("psec").style.display="block";document.getElementById("perr").textContent="";dots()}
-function dots(){for(var i=0;i<4;i++)document.getElementById("d"+i).className="dot"+(i<pin.length?" on":"")}
-function k(v){if(!selA)return;if(v==="clr")pin="";else if(v==="del")pin=pin.slice(0,-1);else if(pin.length<4)pin+=v;dots();document.getElementById("perr").textContent="";if(pin.length===4)check()}
-function check(){if(pin===PINS[selA]){user=selA;document.getElementById("login").style.display="none";document.getElementById("dash").style.display="flex";render()}else{document.getElementById("perr").textContent="Incorrect PIN";pin="";dots()}}
-function logout(){user=null;selA=null;pin="";fA="all";srch="";document.getElementById("dash").style.display="none";document.getElementById("login").style.display="flex";document.querySelectorAll(".a-btn").forEach(function(b){b.classList.remove("sel")});document.getElementById("psec").style.display="none";dots()}
-function myLeads(){return user==="Admin"?ALL:ALL.filter(function(l){return l.artist===user})}
+var PINS={Admin:'0000',Douglas:'1234',Pedro:'2345',Joice:'3456',Bo:'4567',Samara:'5678',Kamryn:'6789',Ivan:'7890',Muchy:'8901'};
+var COL={Douglas:{d:'#1F4E79',b:'#D6E4F0',t:'#1F4E79'},Pedro:{d:'#375623',b:'#E2EFDA',t:'#375623'},Joice:{d:'#7B2D8B',b:'#F3E5F5',t:'#7B2D8B'},Bo:{d:'#B45309',b:'#FDEBD0',t:'#B45309'},Samara:{d:'#6D4C41',b:'#EFEBE9',t:'#6D4C41'},Kamryn:{d:'#8B4513',b:'#F5E6D3',t:'#8B4513'},Ivan:{d:'#1a1a2e',b:'#e8e8f0',t:'#1a1a2e'},Muchy:{d:'#C2185B',b:'#fce4ec',t:'#C2185B'}};
+var SC={New:'#1a4f8a',Contacted:'#b86e00',Responded:'#333',Consultation:'#7B2D8B',Closed:'#1a6b42','No Response':'#aaa'};
+var SS=['New','Contacted','Responded','Consultation','Closed','No Response'];
+var ALL=[
+  {id:'l0',artist:'Douglas',name:'Emerson Rosales',email:'Emersonrosales77@gmail.com',phone:'+16199713025',city:'San Diego',date:'Apr 30'},
+  {id:'l1',artist:'Pedro',name:'Jasmin Nicole',email:'jasminrivas217@gmail.com',phone:'+13614458984',city:'Corpus Christi',date:'Apr 30'},
+  {id:'l2',artist:'Douglas',name:'Fernando Revilla',email:'fernando.revillar@gmail.com',phone:'+16199519816',city:'Oceanside',date:'Apr 30'},
+  {id:'l3',artist:'Joice',name:'Stephany Flores',email:'stephanyflores1220@gmail.com',phone:'+16196652213',city:'San Diego',date:'May 1'},
+  {id:'l4',artist:'Joice',name:'Kevin K.',email:'otkaylor@att.net',phone:'+17607154659',city:'San Diego',date:'May 1'},
+  {id:'l5',artist:'Pedro',name:'Miriam Lynn Wright',email:'adivinemissm31@yahoo.com',phone:'+17609947711',city:'Oceanside',date:'May 1'},
+  {id:'l6',artist:'Pedro',name:'Elizabeth Rivera',email:'elizabethrivera52@yahoo.com',phone:'+13103446640',city:'San Pedro',date:'May 2'},
+  {id:'l7',artist:'Douglas',name:'Ricardo Sanchez',email:'ricky642004@yahoo.com',phone:'+16193864557',city:'Chula Vista',date:'May 2'},
+  {id:'l8',artist:'Joice',name:'Lindy Evans',email:'elindy118@gmail.com',phone:'+16188306857',city:'Trenton',date:'May 3'},
+  {id:'l9',artist:'Douglas',name:'Curtis Turley',email:'curtturley@icloud.com',phone:'+18312911328',city:'Santa Cruz',date:'May 3'},
+  {id:'l10',artist:'Pedro',name:'Cari Shaw',email:'Sheashope48@gmail.com',phone:'+14084821942',city:'San Jose',date:'May 3'},
+  {id:'l11',artist:'Pedro',name:'mdsd',email:'rezbabe760@gmail.com',phone:'+17605330956',city:'Santa Ysabel',date:'May 4'},
+  {id:'l12',artist:'Pedro',name:'Andrew Candelario',email:'candelarioandrew@yahoo.com',phone:'+18318094733',city:'San Diego',date:'May 4'},
+  {id:'l13',artist:'Joice',name:'Angela Hurtado',email:'angelaboost932@gmail.com',phone:'+18089891416',city:'National City',date:'May 5'},
+  {id:'l14',artist:'Pedro',name:'Denetria Martini-Jefferson',email:'deedee619.47dmj@gmail.com',phone:'+16193625839',city:'San Diego',date:'May 6'},
+  {id:'l15',artist:'Joice',name:'Rubie',email:'rubie.d.owens@gmail.com',phone:'+16196072295',city:'Alpine',date:'May 6'},
+  {id:'l16',artist:'Pedro',name:'Dellanira Galindo',email:'dellaniragalindo00@gmail.com',phone:'+19562567008',city:'McAllen',date:'May 7'},
+  {id:'l17',artist:'Douglas',name:'Sam',email:'Samrosa139@gmail.com',phone:'+17728996177',city:'Port Saint Lucie',date:'May 7'},
+  {id:'l18',artist:'Douglas',name:'Keri Grendysa',email:'kerideanng76@gmail.com',phone:'+16196774074',city:'San Diego',date:'May 7'},
+  {id:'l19',artist:'Douglas',name:'Francisco Mendez',email:'fcobelen@gmail.com',phone:'+15596996016',city:'Visalia',date:'May 8'},
+  {id:'l20',artist:'Douglas',name:'David Allen Coy',email:'suprtruk64@aol.com',phone:'+16199940353',city:'Descanso',date:'May 8'},
+  {id:'l21',artist:'Douglas',name:'Jess W Davis',email:'jesswdavis78@yahoo.com',phone:'+16193682844',city:'Santee',date:'May 8'},
+  {id:'l22',artist:'Douglas',name:'Daniel John Castill',email:'latenitelvr@gmail.com',phone:'+16192031756',city:'National City',date:'May 9'},
+  {id:'l23',artist:'Douglas',name:'Charlotte Head',email:'carlhead@gmail.com',phone:'+16414361267',city:'Centerville',date:'May 9'},
+  {id:'l24',artist:'Pedro',name:'David Jermark',email:'dhermark@yahoo.com',phone:'+17608097695',city:'Carlsbad',date:'May 10'},
+  {id:'l25',artist:'Douglas',name:'Carlos Salinas',email:'Salinasrbny@gmail.com',phone:'+13475566036',city:'San Diego',date:'May 10'},
+  {id:'l26',artist:'Joice',name:'Jasmin Lamanna',email:'jasmin.lamanna@gmail.com',phone:'+12103932847',city:'San Diego',date:'May 10'},
+  {id:'l27',artist:'Douglas',name:'Ivan Gomez',email:'Ivangomez081991@gmail.com',phone:'+15096287383',city:'Richland WA',date:'May 11'},
+  {id:'l28',artist:'Douglas',name:'Joe Tabrisky',email:'jtabrisky409@gmail.com',phone:'+13107507198',city:'Los Angeles',date:'May 11'},
+  {id:'l29',artist:'Pedro',name:'Lobo Solitario Sol',email:'0041lobosolitario@gmail.com',phone:'+16196395995',city:'El Cajon',date:'May 11'},
+  {id:'l30',artist:'Joice',name:'Shannon M Berglund',email:'Shanninpinkjs@gmail.com',phone:'+16197573668',city:'Ocean Beach',date:'May 11'},
+  {id:'l31',artist:'Pedro',name:'Alejandro Zamora',email:'zamoraleonalejandr77@gmail.com',phone:'+14422343360',city:'San Diego',date:'May 11'},
+  {id:'l32',artist:'Joice',name:'Suzette Martino',email:'suzmartino@gmail.com',phone:'+16196108245',city:'El Cajon',date:'May 11'},
+  {id:'l33',artist:'Joice',name:'Marge Moretti',email:'marjory.moretti@yahoo.com',phone:'+14802355980',city:'San Diego',date:'May 12'},
+  {id:'l34',artist:'Douglas',name:'Steven Davinger',email:'stevedavinger@gmail.com',phone:'+13174739800',city:'San Diego',date:'May 12'},
+  {id:'l35',artist:'Douglas',name:'Eduardo Ramirez',email:'ediiramsescastle@gmail.com',phone:'+19565030749',city:'Alton',date:'May 13'},
+  {id:'l36',artist:'Pedro',name:'Billy A. Valo',email:'countvalo@gmail.com',phone:'+15868429360',city:'Macomb Township',date:'May 13'},
+  {id:'l37',artist:'Pedro',name:'Darioo Rivera',email:'darioo1946@gmail.com',phone:'+17143950730',city:'California City',date:'May 13'},
+  {id:'l38',artist:'Douglas',name:'Adriana Cruz',email:'konny_daf98@hotmail.com',phone:'+16267471212',city:'California',date:'May 14'},
+  {id:'l39',artist:'Douglas',name:'Evarette Davis-Green',email:'greenAcreschildcare123@gmail.com',phone:'+16208704144',city:'Coffeyville',date:'May 14'},
+  {id:'l40',artist:'Pedro',name:'Lee Green',email:'greenfatboy19731@yahoo.com',phone:'+13188845782',city:'West Monroe',date:'May 14'},
+  {id:'l41',artist:'Douglas',name:'Steve Gill',email:'juilio6429@gmail.com',phone:'+12172401944',city:'Saint Elmo',date:'May 15'},
+  {id:'l42',artist:'Pedro',name:'Gerry Castro',email:'gscastro49@gmail.com',phone:'+13479653613',city:'New York',date:'May 15'},
+  {id:'l43',artist:'Douglas',name:'Thomas Moxley',email:'tmoxley960@gmail.com',phone:'+15206782056',city:'Sierra Vista',date:'May 15'},
+  {id:'l44',artist:'Pedro',name:'David Rose',email:'Drose70@gmail.com',phone:'+16198072109',city:'San Diego',date:'May 15'},
+  {id:'l45',artist:'Joice',name:'Denise Diaz',email:'denise_diaz85@yahoo.com',phone:'+18182683290',city:'Escondido',date:'May 16'},
+  {id:'l46',artist:'Joice',name:'Ronald Wilkinson',email:'lowfiron@gmail.com',phone:'+16192598747',city:'National City',date:'May 16'},
+  {id:'l47',artist:'Douglas',name:'Jesus Rodriguez Quijada',email:'rodriguezjesush@gmail.com',phone:'+16196641020',city:'San Diego',date:'May 17'},
+  {id:'l48',artist:'Pedro',name:'Tyrone White',email:'unkcudda@gmail.com',phone:'+12294560787',city:'Moultrie',date:'May 17'},
+  {id:'l49',artist:'Douglas',name:'Kelly Van Camp',email:'kvancamp67@gmail.com',phone:'+16815825711',city:'Huntington',date:'May 17'},
+  {id:'l50',artist:'Pedro',name:'Murrel Wayne Vailes',email:'murrelvailes602@gmail.com',phone:'+16193179514',city:'San Diego',date:'May 17'},
+  {id:'l51',artist:'Douglas',name:'Jennifer Wieber',email:'jenn.videko4@gmail.com',phone:'+19205795691',city:'Shawano',date:'May 17'},
+  {id:'l52',artist:'Douglas',name:'Leanna Brown',email:'leanna.brown10@gmail.com',phone:'+19853735244',city:'San Diego',date:'May 17'},
+  {id:'l53',artist:'Douglas',name:'Andrea Nicolas',email:'Andreanicolas@sbcglobal.net',phone:'+17143662395',city:'Brea',date:'May 17'},
+  {id:'l54',artist:'Pedro',name:'Myjorge Hernandez',email:'ortizjorge620@gmail.com',phone:'+12392719005',city:'Key West',date:'May 17'},
+  {id:'l55',artist:'Joice',name:'Joe Gentillalli',email:'joegentillalli@me.com',phone:'+16199855205',city:'San Diego',date:'May 17'},
+  {id:'l56',artist:'Joice',name:'Mick Evans',email:'mickthecod@gmail.com',phone:'+15038102586',city:'Tigard',date:'May 17'},
+  {id:'l57',artist:'Pedro',name:'Stephen Huss',email:'stephenhuss619@gmail.com',phone:'+16197483639',city:'Chula Vista',date:'May 17'},
+  {id:'l58',artist:'Douglas',name:'Launye Carter',email:'Carterlc64@yahoo.com',phone:'+18582054246',city:'National City',date:'May 18'},
+  {id:'l59',artist:'Douglas',name:'Louie Juanengo',email:'louiejuanengo@yahoo.com',phone:'+18589007812',city:'San Diego',date:'May 18'},
+  {id:'l60',artist:'Douglas',name:'Richard Delao',email:'richarddelao44@icloud.com',phone:'+16199889463',city:'Jamul',date:'May 18'},
+  {id:'l61',artist:'Douglas',name:'Cesar Adriel Romero',email:'Adriel.romero2@icloud.com',phone:'+523347176221',city:'San Diego',date:'May 19'},
+  {id:'l62',artist:'Pedro',name:'Richard Baxter',email:'ib.richardbaxter@gmail.com',phone:'+15623350389',city:'Long Beach',date:'May 20'},
+  {id:'l63',artist:'Douglas',name:'Nick Mathes',email:'holloweennitemare89@gmail.com',phone:'+13177561667',city:'Indianapolis',date:'May 20'},
+  {id:'l64',artist:'Douglas',name:'Robert M Cannon',email:'Cannonrm@hotmail.com',phone:'+17607249258',city:'Vista',date:'May 20'},
+  {id:'l65',artist:'Samara',name:'Mc Kulet',email:'moselina_15@yahoo.com',phone:'+16197914344',city:'National City',date:'May 21'},
+  {id:'l66',artist:'Joice',name:'Mike Roman',email:'romee2572@yahoo.com',phone:'+17604151371',city:'San Diego',date:'May 21'},
+  {id:'l67',artist:'Samara',name:'Claudia Guillen',email:'caguillen1981@gmail.com',phone:'+19099970201',city:'Pomona',date:'May 21'},
+  {id:'l68',artist:'Douglas',name:'Tee Reva Foreman',email:'therevaf@yahoo.com',phone:'+15044939125',city:'San Diego',date:'May 21'},
+  {id:'l69',artist:'Joice',name:'Annie Korn',email:'anniekorn@gmail.com',phone:'+16199294660',city:'San Diego',date:'May 22'},
+  {id:'l70',artist:'Bo',name:'Gerald Quaco',email:'quacogerald61@gmail.com',phone:'+19514189749',city:'Reno',date:'May 22'},
+  {id:'l71',artist:'Douglas',name:'Anthony Wayne Horan',email:'two.tone_jones@yahoo.com',phone:'+12317364216',city:'Virginia Beach',date:'May 22'},
+  {id:'l72',artist:'Pedro',name:'Ana Pagan',email:'mommadukes2598@yahoo.com',phone:'+17187044664',city:'Brooklyn',date:'May 22'},
+  {id:'l73',artist:'Pedro',name:'Alvin Findley',email:'alvin.findley1@gmail.com',phone:'+19088215505',city:'District Heights',date:'May 22'},
+  {id:'l74',artist:'Douglas',name:'Philip Ziganto',email:'pziganto@gmail.com',phone:'+18643860618',city:'Greenville',date:'May 22'},
+  {id:'l75',artist:'Kamryn',name:'Robert Snyder',email:'snyderrobert214@gmail.com',phone:'+16198232753',city:'San Diego',date:'May 22'},
+  {id:'l76',artist:'Joice',name:'Gina Patrick-West',email:'obdragonfly@gmail.com',phone:'+16024132065',city:'San Diego',date:'May 23'},
+  {id:'l77',artist:'Joice',name:'Christine Lavoie',email:'cal1524@icloud.com',phone:'+17604155822',city:'Ramona',date:'May 23'},
+  {id:'l78',artist:'Joice',name:'Margery Amparo',email:'jojorizal1@yahoo.com',phone:'+17604502822',city:'Oceanside',date:'May 23'},
+  {id:'l79',artist:'Bo',name:'Ramon Rosario',email:'rosariorlr@outlook.com',phone:'+15613886363',city:'Schofield Barracks',date:'May 23'},
+  {id:'l80',artist:'Kamryn',name:'Christian Villegas',email:'chris.villegas.tamayo@gmail.com',phone:'+16199176955',city:'San Diego',date:'May 23'},
+  {id:'l81',artist:'Samara',name:'Joel Morones',email:'joelmorones456@yahoo.com',phone:'+17133822351',city:'Houston',date:'May 23'},
+  {id:'l82',artist:'Joice',name:'Tracy George',email:'tracygeorge1344@gmail.com',phone:'+13082937267',city:'Carlsbad',date:'May 23'},
+  {id:'l83',artist:'Bo',name:'Lacey Ramos',email:'351lace@gmail.com',phone:'+16193722430',city:'San Diego',date:'May 24'},
+  {id:'l84',artist:'Pedro',name:'Dillard Johnson',email:'dillardj2198@gmail.com',phone:'+13343929152',city:'Montgomery',date:'May 24'},
+  {id:'l85',artist:'Pedro',name:'Alice Bailey',email:'alicebailey873@gmail.com',phone:'+18058309115',city:'Other',date:'May 24'},
+  {id:'l86',artist:'Douglas',name:'Kim McCormick',email:'kim79ta@aol.com',phone:'+19788884583',city:'Center Tuftonboro',date:'May 24'},
+  {id:'l87',artist:'Pedro',name:'Margie McGinnis-Brown',email:'mcginnisbrownm@gmail.com',phone:'+12537205493',city:'Covington',date:'May 24'},
+  {id:'l88',artist:'Bo',name:'Clay Vern Chipman',email:'clayvchipman@gmail.com',phone:'+13859857168',city:'Provo',date:'May 24'},
+  {id:'l89',artist:'Samara',name:'Linda Olivarria',email:'lind4oli10@gmail.com',phone:'+16192144743',city:'San Diego',date:'May 24'},
+  {id:'l90',artist:'Pedro',name:'Jesus Islavaclarkdale',email:'trabolta1313@gmail.com',phone:'+19282746084',city:'Clarkdale AZ',date:'May 24'},
+  {id:'l91',artist:'Joice',name:'Jamie Dick',email:'Jamiedick1951@gmail.com',phone:'+18587355963',city:'San Diego',date:'May 24'},
+  {id:'l92',artist:'Kamryn',name:'Scott Mailly',email:'scottyschmidty28@gmail.com',phone:'+19495561076',city:'Los Angeles',date:'May 25'},
+  {id:'l93',artist:'Bo',name:'Brandy OBray',email:'brandyobray8@gmail.com',phone:'+17144032342',city:'Laguna Niguel',date:'May 25'},
+  {id:'l94',artist:'Joice',name:'Ramon Cabal',email:'ramoncabal@ymail.com',phone:'+16193661292',city:'Chula Vista',date:'May 25'},
+  {id:'l95',artist:'Kamryn',name:'David Montajes',email:'dmontajes56@gmail.com',phone:'+16199408458',city:'Chula Vista',date:'May 25'},
+  {id:'l96',artist:'Joice',name:'Elizabeth Bracmontez',email:'elizbeth.brac9311@gmail.com',phone:'+18052583976',city:'Oxnard',date:'May 25'},
+  {id:'l97',artist:'Pedro',name:'Kellie Kay',email:'kelliek334@gmail.com',phone:'+19285095553',city:'Yuma',date:'May 25'},
+  {id:'l98',artist:'Douglas',name:'Elliot Shep',email:'elliotsteinwedell91@gmail.com',phone:'+16265320454',city:'Lake Forest',date:'May 25'},
+  {id:'l99',artist:'Douglas',name:'Sandy Coffman',email:'sandycoffman44@gmail.com',phone:'+14173967018',city:'Joplin',date:'May 25'},
+  {id:'l100',artist:'Kamryn',name:'Micah Greer',email:'micahboydgreer@gmail.com',phone:'+17576523502',city:'Virginia Beach',date:'May 25'},
+  {id:'l101',artist:'Samara',name:'Anthony McMillan',email:'McMillanAnthony53@gmail.com',phone:'+15107760268',city:'Vallejo',date:'May 25'},
+  {id:'l102',artist:'Pedro',name:'Martha Battle',email:'battlemartha15@gmail.com',phone:'+12524528894',city:'Tarboro',date:'May 25'},
+  {id:'l103',artist:'Pedro',name:'Christine Hillesheim',email:'hillesheim7@icloud.com',phone:'+15073293586',city:'Worthington',date:'May 25'},
+  {id:'l104',artist:'Douglas',name:'Raymond Rios',email:'rdrios61@hotmail.com',phone:'+15203329266',city:'Tucson',date:'May 25'},
+  {id:'l105',artist:'Kamryn',name:'Edwin Duarte',email:'edwinduarte1258@gmail.com',phone:'+13237706651',city:'Los Angeles',date:'May 25'},
+  {id:'l106',artist:'Pedro',name:'Claudia Jones',email:'claudiaj196923@gmail.com',phone:'+16193437897',city:'San Diego',date:'May 26'},
+  {id:'l107',artist:'Douglas',name:'Jason Grimes',email:'Grimes70@gmail.com',phone:'+16182002947',city:'West Frankfort',date:'May 26'},
+  {id:'l108',artist:'Kamryn',name:'Lamont Hall',email:'jungle200415@gmail.com',phone:'+17079919530',city:'San Rafael',date:'May 26'},
+  {id:'l109',artist:'Samara',name:'Robert Hamor',email:'robertchamor@outlook.com',phone:'+13605362426',city:'Poulsbo',date:'May 26'},
+  {id:'l110',artist:'Kamryn',name:'Oscar Chavez',email:'oscarchavez98@yahoo.com',phone:'+16198654629',city:'Chula Vista',date:'May 26'},
+  {id:'l111',artist:'Joice',name:'Wilbur Judycki',email:'w.judycki@gmail.com',phone:'+16194961216',city:'San Diego',date:'May 26'},
+  {id:'l112',artist:'Samara',name:'Gustavo Bazo',email:'bazogus@yahoo.com',phone:'+16193951047',city:'Chula Vista',date:'May 27'},
+  {id:'l113',artist:'Douglas',name:'Matthew Pasculli',email:'Matthewpasculli@gmail.com',phone:'+18315852231',city:'San Diego',date:'May 27'},
+  {id:'l114',artist:'Bo',name:'Chonni Manley',email:'manleychonni3@gmail.com',phone:'+16195589208',city:'San Diego',date:'May 27'},
+  {id:'l115',artist:'Douglas',name:'Robb S. Perez',email:'robbdiegoperez16@yahoo.com',phone:'+19563349387',city:'Laredo',date:'May 27'},
+  {id:'l116',artist:'Douglas',name:'Brad Bryant',email:'bradley.btyant@gmail.com',phone:'+12054405050',city:'J Town',date:'May 27'},
+  {id:'l117',artist:'Pedro',name:'Steven Robinson',email:'Strobinson25@yahoo.com',phone:'+17733660429',city:'Chicago Ridge',date:'May 27'},
+  {id:'l118',artist:'Douglas',name:'Amanda Olivares',email:'mandismilesxd@gmail.com',phone:'+16086366712',city:'San Diego',date:'May 27'},
+  {id:'l119',artist:'Joice',name:'Jesus Solorzano',email:'jesussol30@gmail.com',phone:'+19282569893',city:'Yuma',date:'May 27'},
+  {id:'l120',artist:'Bo',name:'Sharyl Yanez',email:'sayfourh1966@live.com',phone:'+17604847483',city:'Ramona',date:'May 27'},
+  {id:'l121',artist:'Douglas',name:'Mabelle Harris',email:'mabelleharris@gmail.com',phone:'+12072992889',city:'Bangor',date:'May 28'},
+  {id:'l122',artist:'Douglas',name:'Wesley Mowris',email:'wawam6322@gmail.com',phone:'+18457056322',city:'RedHook',date:'May 28'},
+  {id:'l123',artist:'Pedro',name:'Deon Jones',email:'demack1.dj@gmail.com',phone:'+13233453756',city:'Los Angeles',date:'May 28'},
+  {id:'l124',artist:'Douglas',name:'Mick MacGregor',email:'mikaelemacgregor700@gmail.com',phone:'+18582478045',city:'San Diego',date:'May 28'},
+  {id:'l125',artist:'Pedro',name:'Aaron Hicks',email:'aaronhicks281@gmail.com',phone:'+16194156135',city:'San Diego',date:'May 28'},
+  {id:'l126',artist:'Joice',name:'Cecilia Diane McMorris',email:'mcmce_1@cox.net',phone:'+16199199887',city:'National City',date:'May 29'},
+  {id:'l127',artist:'Pedro',name:'Lizzie Montrose',email:'Montrose65liz@gmail.com',phone:'+15098566414',city:'Spokane Valley',date:'May 29'},
+  {id:'l128',artist:'Kamryn',name:'Presley Brown',email:'Presleybrown2@yahoo.com',phone:'+17607078586',city:'Oceanside',date:'May 29'},
+  {id:'l129',artist:'Douglas',name:'David Jackson',email:'david.jackson@email.bakersfieldcollege.edu',phone:'+16614077312',city:'Bakersfield',date:'May 29'},
+  {id:'l130',artist:'Kamryn',name:'Lm Quintanilla',email:'lopezleo199405@icloud.com',phone:'+14424425956',city:'Encinitas',date:'May 29'},
+  {id:'l131',artist:'Bo',name:'Christine Gillespie',email:'blovesmom.cg@gmail.com',phone:'+16197358081',city:'El Cajon',date:'May 29'},
+  {id:'l132',artist:'Kamryn',name:'Cheryl Smith',email:'cheryl_ann48@yahoo.com',phone:'+16197158950',city:'San Diego',date:'May 30'},
+  {id:'l133',artist:'Samara',name:'Thonghane Sanvichith',email:'Sthonghane@yahoo.com',phone:'+16198610690',city:'San Diego',date:'May 30'},
+  {id:'l134',artist:'Samara',name:'Jose Alvardo',email:'jalvardo291@gmail.com',phone:'+16198556273',city:'San Diego',date:'May 30'},
+  {id:'l135',artist:'Bo',name:'Rafael Flores',email:'rafaelflores10211021@gmail.com',phone:'+14808236524',city:'El Mirage',date:'May 31'},
+  {id:'l136',artist:'Kamryn',name:'Kelly Kuchta',email:'kellyannk81@gmail.com',phone:'+16197166755',city:'El Cajon',date:'May 31'},
+  {id:'l137',artist:'Bo',name:'Tom Mcleod',email:'mcleodtom0@gmail.com',phone:'+16196748383',city:'San Diego',date:'Jun 1'},
+  {id:'l138',artist:'Kamryn',name:'Monzon Santiago',email:'jacintosantiago3@gmail.com',phone:'+16198441017',city:'San Diego',date:'Jun 1'},
+  {id:'l139',artist:'Bo',name:'Steve Murphy',email:'sjm56304@gmail.com',phone:'+13203099160',city:'Sartell',date:'Jun 2'}
+];
+var usr=null,sel=null,pin='',fa='all',sq='';
+var sts=JSON.parse(localStorage.getItem('pi8')||'{}');
+function save(){localStorage.setItem('pi8',JSON.stringify(sts))}
+function pick(n,b){sel=n;pin='';document.querySelectorAll('.a-btn').forEach(function(x){x.classList.remove('sel')});b.classList.add('sel');document.getElementById('pname').textContent=n;document.getElementById('psec').style.display='block';document.getElementById('perr').textContent='';dots()}
+function dots(){for(var i=0;i<4;i++){document.getElementById('d'+i).className='dot'+(i<pin.length?' on':'')}}
+function k(v){if(!sel)return;if(pin.length<4)pin+=String(v);dots();document.getElementById('perr').textContent='';if(pin.length===4)chk()}
+function del(){if(!sel)return;pin=pin.slice(0,-1);dots()}
+function clr(){if(!sel)return;pin='';dots()}
+function chk(){if(pin===PINS[sel]){usr=sel;document.getElementById('login').style.display='none';document.getElementById('dash').style.display='flex';render()}else{document.getElementById('perr').textContent='Incorrect PIN';pin='';dots()}}
+function out(){usr=null;sel=null;pin='';fa='all';sq='';document.getElementById('dash').style.display='none';document.getElementById('login').style.display='flex';document.querySelectorAll('.a-btn').forEach(function(x){x.classList.remove('sel')});document.getElementById('psec').style.display='none';dots()}
+function ml(){return usr==='Admin'?ALL:ALL.filter(function(l){return l.artist===usr})}
 function render(){
-  var isAdmin=user==="Admin";
-  document.getElementById("who").textContent=isAdmin?"Admin":user+" · My Leads";
-  var ml=myLeads();
-  var closed=ml.filter(function(l){return(sts[l.id]||"New")==="Closed"}).length;
-  var rate=ml.length>0?Math.round(closed/ml.length*100):0;
-  document.getElementById("stats").innerHTML='<div class="stat"><div class="stat-l">Total</div><div class="stat-v">'+ml.length+'</div></div><div class="stat"><div class="stat-l">Closed</div><div class="stat-v g">'+closed+'</div></div><div class="stat"><div class="stat-l">Conv %</div><div class="stat-v">'+rate+'%</div></div>';
-  var fh=isAdmin?'<button class="fb on" onclick="setF('all',this)">All</button>'+Object.keys(COL).map(function(a){return'<button class="fb" onclick="setF(''+a+'',this)">'+a+'</button>'}).join(""):"";
-  document.getElementById("fltrs").innerHTML=fh;
-  renderLeads()
+  var isA=usr==='Admin';
+  document.getElementById('who').textContent=isA?'Admin':usr;
+  var m=ml(),cl=m.filter(function(l){return(sts[l.id]||'New')==='Closed'}).length;
+  var rt=m.length?Math.round(cl/m.length*100):0;
+  document.getElementById('stats').innerHTML='<div class="stat"><div class="stat-l">Total</div><div class="stat-v">'+m.length+'</div></div><div class="stat"><div class="stat-l">Closed</div><div class="stat-v g">'+cl+'</div></div><div class="stat"><div class="stat-l">Conv%</div><div class="stat-v">'+rt+'%</div></div>';
+  var fh=isA?'<button class="fb on" onclick="setF('all',this)">All</button>'+['Douglas','Pedro','Joice','Bo','Samara','Kamryn','Ivan','Muchy'].map(function(a){return'<button class="fb" onclick="setF(''+a+'',this)">'+a+'</button>'}).join(''):'';
+  document.getElementById('fltrs').innerHTML=fh;
+  rl()
 }
-function renderLeads(){
-  var isAdmin=user==="Admin";
-  var ml=myLeads().filter(function(l){var mA=!isAdmin||fA==="all"||l.artist===fA;var q=srch.toLowerCase();var mS=!q||l.name.toLowerCase().indexOf(q)>-1||l.email.toLowerCase().indexOf(q)>-1||(l.city||"").toLowerCase().indexOf(q)>-1;return mA&&mS});
-  if(!ml.length){document.getElementById("leads").innerHTML='<div class="empty">No leads found</div>';return}
-  var html="";
-  ml.forEach(function(l){
-    var c=COL[l.artist]||{dot:"#888",bg:"#eee",tx:"#333"};
-    var st=sts[l.id]||"New";
-    var ph=(l.phone||"").replace("p:","").trim();
-    var clean=ph.replace(/[^\d+]/g,"");
-    var num=clean.indexOf("+")===0?clean:"+1"+clean;
-    var opts=STATUSES.map(function(s){return'<option value="'+s+'"'+(s===st?" selected":"")+">"+s+"</option>"}).join("");
-    var tag=isAdmin?'<span class="lr-tag" style="background:'+c.bg+";color:"+c.tx+'">'+l.artist+"</span>":"";
-    html+='<div class="lr"><div class="lr-row1"><div class="lr-dot" style="background:'+c.dot+'"></div><div class="lr-name">'+l.name+"</div>"+tag+'<div class="lr-date">'+l.date+'</div></div><div class="lr-info">'+l.email+" &middot; "+(l.city||"")+'</div><div class="lr-actions"><a class="ab ab-email" href="mailto:'+l.email+'">&#9993; Email</a><a class="ab ab-sms" href="sms:'+num+'">&#128172; Text</a><a class="ab ab-call" href="tel:'+num+'">&#128222; Call</a></div><select class="lr-status" style="color:'+(STCOL[st]||"#111")+'" onchange="chSt(''+l.id+'',this.value,this)">'+opts+'</select></div>'
+function rl(){
+  var isA=usr==='Admin';
+  var m=ml().filter(function(l){var ma=!isA||fa==='all'||l.artist===fa;var ms=!sq||l.name.toLowerCase().indexOf(sq)>-1||l.email.toLowerCase().indexOf(sq)>-1||(l.city||'').toLowerCase().indexOf(sq)>-1;return ma&&ms});
+  if(!m.length){document.getElementById('leads').innerHTML='<div class="empty">No leads found</div>';return}
+  var h='';
+  m.forEach(function(l){
+    var c=COL[l.artist]||{d:'#888',b:'#eee',t:'#333'},st=sts[l.id]||'New';
+    var ph=(l.phone||'').replace('p:','').trim(),cl=ph.replace(/[^\d+]/g,''),num=cl[0]==='+'?cl:'+1'+cl;
+    var opts=SS.map(function(s){return'<option'+(s===st?' selected':'')+'>'+s+'</option>'}).join('');
+    var tag=isA?'<span class="lr-tag" style="background:'+c.b+';color:'+c.t+'">'+l.artist+'</span>':'';
+    h+='<div class="lr"><div class="lr-r1"><div class="lr-dot" style="background:'+c.d+'"></div><div class="lr-name">'+l.name+'</div>'+tag+'<div class="lr-date">'+l.date+'</div></div><div class="lr-info">'+l.email+' - '+(l.city||'')+'</div><div class="lr-acts"><a class="ab em" href="mailto:'+l.email+'">Email</a><a class="ab sm" href="sms:'+num+'">Text</a><a class="ab ca" href="tel:'+num+'">Call</a></div><select class="lr-st" style="color:'+(SC[st]||'#111')+'" onchange="cst(''+l.id+'',this.value,this)">'+opts+'</select></div>'
   });
-  document.getElementById("leads").innerHTML=html
+  document.getElementById('leads').innerHTML=h
 }
-function setF(f,btn){fA=f;document.querySelectorAll(".fb").forEach(function(b){b.classList.remove("on")});btn.classList.add("on");renderLeads()}
-function setSrch(v){srch=v;renderLeads()}
-function chSt(id,st,sel){sts[id]=st;save();sel.style.color=STCOL[st]||"#111";render()}
+function setF(f,b){fa=f;document.querySelectorAll('.fb').forEach(function(x){x.classList.remove('on')});b.classList.add('on');rl()}
+function search(v){sq=v.toLowerCase();rl()}
+function cst(id,st,s){sts[id]=st;save();s.style.color=SC[st]||'#111';render()}
 </script>
 </body>
 </html>
