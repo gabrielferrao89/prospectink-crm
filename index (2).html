@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Prospect Ink · Lead Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0a;--dark:#141414;--mid:#1e1e1e;--border:#2a2a2a;--muted:#666;--dim:#333;--white:#f5f5f0;--cream:#f0ede6;--ink:#111;--success:#1a7a4a;--purple:#7B2D8B}
+html,body{height:100%;width:100%;background:var(--black)}
+body{font-family:'DM Sans',sans-serif;color:var(--white);overflow-x:hidden}
+
+#login{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:48px 20px 32px;background:var(--black)}
+.logo-wrap{text-align:center;margin-bottom:32px}
+.logo-img{height:32px;filter:invert(1) brightness(0.85);display:block;margin:0 auto 12px}
+.logo-div{width:36px;height:1px;background:var(--dim);margin:10px auto}
+.logo-sub{font-size:9px;letter-spacing:4px;color:var(--muted);text-transform:uppercase}
+.login-card{background:var(--dark);border:0.5px solid var(--border);border-radius:16px;padding:22px;width:100%;max-width:360px}
+.card-label{font-size:9px;letter-spacing:3px;color:var(--muted);text-align:center;margin-bottom:16px;text-transform:uppercase}
+.artist-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.a-btn{padding:15px 8px;border:0.5px solid var(--border);background:var(--mid);border-radius:10px;color:#aaa;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;transition:all 0.15s;text-align:center}
+.a-btn:hover,.a-btn.sel{border-color:rgba(255,255,255,0.4);color:var(--white);background:#252525}
+.pin-sec{display:none;margin-top:4px}
+.pin-name{font-size:11px;color:var(--muted);letter-spacing:1px;text-align:center;margin-bottom:14px}
+.pin-name span{color:var(--white)}
+.dots{display:flex;gap:14px;justify-content:center;margin-bottom:18px}
+.dot{width:12px;height:12px;border-radius:50%;border:0.5px solid #333;transition:all 0.12s}
+.dot.on{background:var(--white);border-color:var(--white)}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pk{padding:17px 8px;background:var(--mid);border:0.5px solid var(--border);border-radius:10px;color:#ccc;font-family:'Cormorant Garamond',serif;font-size:20px;cursor:pointer;text-align:center;transition:all 0.1s}
+.pk:hover{background:#2a2a2a;color:var(--white)}
+.pk:active{transform:scale(0.94)}
+.pk.util{font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:1px;color:var(--muted)}
+.pin-err{font-size:11px;color:#c0392b;text-align:center;margin-top:10px;min-height:16px}
+.loading{font-size:10px;color:var(--muted);text-align:center;margin-top:12px;letter-spacing:1px;display:none;text-transform:uppercase}
+
+#dash{display:none;min-height:100dvh;background:var(--cream);flex-direction:column}
+.top-bar{background:var(--black);padding:0 16px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.top-logo{height:22px;filter:invert(1) brightness(0.85)}
+.top-who{font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+.sign-out{font-size:9px;color:var(--muted);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;padding:6px 10px}
+.dash-body{padding:14px;flex:1}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.stat{background:#fff;border:0.5px solid #e0ddd6;border-radius:10px;padding:12px 10px;text-align:center}
+.stat-l{font-size:8px;letter-spacing:1px;color:#999;text-transform:uppercase;margin-bottom:2px}
+.stat-v{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--ink)}
+.stat-v.g{color:var(--success)}
+.filter-bar{display:flex;gap:6px;margin-bottom:10px;overflow-x:auto;padding:4px 0}
+.filter-bar::-webkit-scrollbar{display:none}
+.fb{padding:5px 14px;border-radius:20px;border:0.5px solid #d8d4cc;background:#fff;font-size:10px;cursor:pointer;color:#888;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0}
+.fb.on{background:var(--black);color:#fff;border-color:var(--black)}
+.srch{margin-bottom:12px}
+.srch input{width:100%;padding:9px 16px;border-radius:24px;border:0.5px solid #d8d4cc;background:#fff;font-size:13px;color:var(--ink);font-family:'DM Sans',sans-serif;outline:none}
+.leads{display:flex;flex-direction:column;gap:8px}
+.lr{background:#fff;border:0.5px solid #e8e4dc;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.lr-row1{display:flex;align-items:center;gap:8px}
+.lr-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.lr-name{font-size:15px;font-weight:500;color:var(--ink);flex:1}
+.lr-tag{font-size:9px;padding:3px 8px;border-radius:6px;font-weight:500;text-transform:uppercase}
+.lr-date{font-size:10px;color:#ccc;flex-shrink:0}
+.lr-info{font-size:12px;color:#888}
+.lr-actions{display:flex;gap:8px}
+.ab{display:flex;align-items:center;justify-content:center;gap:5px;padding:10px;border-radius:10px;font-size:12px;font-family:'DM Sans',sans-serif;text-decoration:none;border:0.5px solid;font-weight:500;flex:1}
+.ab-email{color:#1a4f8a;border-color:#c5d8f0;background:#eef4fb}
+.ab-sms{color:#1a6b42;border-color:#b8deca;background:#edf7f2}
+.ab-call{color:#b86e00;border-color:#f0ddb8;background:#fdf5e6}
+.lr-status{width:100%;font-size:13px;padding:10px 12px;border-radius:10px;border:0.5px solid #ddd;background:#f8f5f0;cursor:pointer;font-family:'DM Sans',sans-serif;outline:none}
+.empty{text-align:center;padding:3rem;color:#bbb;font-size:14px;font-style:italic}
+.pi-footer{text-align:center;padding:18px;font-size:9px;letter-spacing:2px;color:#bbb;text-transform:uppercase;border-top:0.5px solid #e0ddd6;background:#ebe8e0}
+.pi-footer img{height:14px;filter:opacity(0.2);display:block;margin:0 auto 8px}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <div class="logo-wrap">
+    <img class="logo-img" src="https://static.wixstatic.com/media/273854_ceedbd077e164860acd9cb4538d9cc66~mv2.png/v1/fill/w_183,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prospect%20Ink%20Logo%20Blackmdpi.png" alt="Prospect Ink"/>
+    <div class="logo-div"></div>
+    <div class="logo-sub">Lead Portal &middot; La Jolla, CA</div>
+  </div>
+  <div class="login-card">
+    <div class="card-label">Select your name</div>
+    <div class="artist-grid" id="agrid"></div>
+    <div class="pin-sec" id="psec">
+      <div class="pin-name">PIN for <span id="pname"></span></div>
+      <div class="dots">
+        <div class="dot" id="d0"></div><div class="dot" id="d1"></div>
+        <div class="dot" id="d2"></div><div class="dot" id="d3"></div>
+      </div>
+      <div class="pad">
+        <button class="pk" onclick="k('1')">1</button><button class="pk" onclick="k('2')">2</button><button class="pk" onclick="k('3')">3</button>
+        <button class="pk" onclick="k('4')">4</button><button class="pk" onclick="k('5')">5</button><button class="pk" onclick="k('6')">6</button>
+        <button class="pk" onclick="k('7')">7</button><button class="pk" onclick="k('8')">8</button><button class="pk" onclick="k('9')">9</button>
+        <button class="pk util" onclick="k('clr')">CLR</button><button class="pk" onclick="k('0')">0</button><button class="pk util" onclick="k('del')">&#9003;</button>
+      </div>
+      <div id="perr" class="pin-err"></div>
+      <div id="pload" class="loading">Loading your leads...</div>
+    </div>
+  </div>
+</div>
+
+<div id="dash">
+  <div class="top-bar">
+    <img class="top-logo" src="https://static.wixstatic.com/media/273854_ceedbd077e164860acd9cb4538d9cc66~mv2.png/v1/fill/w_183,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prospect%20Ink%20Logo%20Blackmdpi.png" alt="Prospect Ink"/>
+    <div class="top-who" id="who"></div>
+    <button class="sign-out" onclick="logout()">Sign Out</button>
+  </div>
+  <div class="dash-body">
+    <div class="stat-row" id="stats"></div>
+    <div class="filter-bar" id="fltrs"></div>
+    <div class="srch"><input placeholder="Search leads..." oninput="setSrch(this.value)"/></div>
+    <div class="leads" id="leads"></div>
+  </div>
+  <div class="pi-footer">
+    <img src="https://static.wixstatic.com/media/273854_ceedbd077e164860acd9cb4538d9cc66~mv2.png/v1/fill/w_183,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Prospect%20Ink%20Logo%20Blackmdpi.png" alt="Prospect Ink"/>
+    1224 Prospect St &middot; Suite 150 &middot; La Jolla, CA 92037
+  </div>
+</div>
+
+<script>
+var API = '/.netlify/functions/api';
+var PINS={Admin:'0000',Douglas:'1234',Pedro:'2345',Joice:'3456',Bo:'4567',Samara:'5678',Kamryn:'6789',Ivan:'7890',Muchy:'8901'};
+var COL={Douglas:{dot:'#1F4E79',bg:'#D6E4F0',tx:'#1F4E79'},Pedro:{dot:'#375623',bg:'#E2EFDA',tx:'#375623'},Joice:{dot:'#7B2D8B',bg:'#F3E5F5',tx:'#7B2D8B'},Bo:{dot:'#B45309',bg:'#FDEBD0',tx:'#B45309'},Samara:{dot:'#6D4C41',bg:'#EFEBE9',tx:'#6D4C41'},Kamryn:{dot:'#8B4513',bg:'#F5E6D3',tx:'#8B4513'},Ivan:{dot:'#1a1a2e',bg:'#e8e8f0',tx:'#1a1a2e'},Muchy:{dot:'#C2185B',bg:'#fce4ec',tx:'#C2185B'}};
+var STCOL={New:'#1a4f8a',Contacted:'#b86e00',Responded:'#333',Consultation:'#7B2D8B',Closed:'#1a6b42','No Response':'#aaa'};
+var STATUSES=['New','Contacted','Responded','Consultation','Closed','No Response'];
+var user=null,selA=null,pin='',fA='all',srch='',allLeads=[];
+
+var ag=document.getElementById('agrid');
+Object.keys(PINS).forEach(function(a){
+  var b=document.createElement('button');b.className='a-btn';b.textContent=a;
+  b.onclick=(function(n,btn){return function(){pick(n,btn);};})(a,b);
+  ag.appendChild(b);
+});
+
+function pick(name,btn){selA=name;pin='';document.querySelectorAll('.a-btn').forEach(function(b){b.classList.remove('sel');});btn.classList.add('sel');document.getElementById('pname').textContent=name;document.getElementById('psec').style.display='block';document.getElementById('perr').textContent='';document.getElementById('pload').style.display='none';dots();}
+function dots(){for(var i=0;i<4;i++)document.getElementById('d'+i).className='dot'+(i<pin.length?' on':'');}
+function k(v){if(!selA)return;if(v==='clr')pin='';else if(v==='del')pin=pin.slice(0,-1);else if(pin.length<4)pin+=v;dots();document.getElementById('perr').textContent='';if(pin.length===4)check();}
+function check(){
+  if(pin===PINS[selA]){
+    user=selA;
+    document.getElementById('pload').style.display='block';
+    fetch(API+'?action=getLeads&artist='+encodeURIComponent(user))
+      .then(function(r){return r.json();})
+      .then(function(leads){
+        allLeads=leads;
+        document.getElementById('login').style.display='none';
+        document.getElementById('dash').style.display='flex';
+        render();
+      })
+      .catch(function(){
+        document.getElementById('pload').style.display='none';
+        document.getElementById('perr').textContent='Connection error. Try again.';
+        pin='';dots();
+      });
+  } else {
+    document.getElementById('perr').textContent='Incorrect PIN';
+    pin='';dots();
+  }
+}
+function logout(){user=null;selA=null;pin='';fA='all';srch='';allLeads=[];document.getElementById('dash').style.display='none';document.getElementById('login').style.display='flex';document.querySelectorAll('.a-btn').forEach(function(b){b.classList.remove('sel');});document.getElementById('psec').style.display='none';document.getElementById('pload').style.display='none';dots();}
+function render(){
+  var isAdmin=user==='Admin';
+  document.getElementById('who').textContent=isAdmin?'Admin · All Artists':user+' · My Leads';
+  var ml=allLeads;
+  var closed=ml.filter(function(l){return l.status==='Closed';}).length;
+  var rate=ml.length>0?Math.round((closed/ml.length)*100):0;
+  document.getElementById('stats').innerHTML='<div class="stat"><div class="stat-l">Total</div><div class="stat-v">'+ml.length+'</div></div>'+'<div class="stat"><div class="stat-l">Closed</div><div class="stat-v g">'+closed+'</div></div>'+'<div class="stat"><div class="stat-l">Conv %</div><div class="stat-v">'+rate+'%</div></div>';
+  var fh=isAdmin?'<button class="fb on" onclick="setF(\'all\',this)">All</button>'+Object.keys(COL).map(function(a){return '<button class="fb" onclick="setF(\''+a+'\',this)">'+a+'</button>';}).join(''):'';
+  document.getElementById('fltrs').innerHTML=fh;
+  renderLeads();
+}
+function renderLeads(){
+  var isAdmin=user==='Admin';
+  var filtered=allLeads.filter(function(l){var mA=!isAdmin||fA==='all'||l.artist===fA;var q=srch.toLowerCase();var mS=!q||l.name.toLowerCase().indexOf(q)>-1||l.email.toLowerCase().indexOf(q)>-1||(l.city||'').toLowerCase().indexOf(q)>-1;return mA&&mS;});
+  if(!filtered.length){document.getElementById('leads').innerHTML='<div class="empty">No leads found</div>';return;}
+  var html='';
+  filtered.forEach(function(l){
+    var c=COL[l.artist]||{dot:'#888',bg:'#eee',tx:'#333'};
+    var st=l.status||'New';
+    var ph=(l.phone||'').replace('p:','').trim();
+    var clean=ph.replace(/[^\d+]/g,'');
+    var num=clean.indexOf('+')===0?clean:'+1'+clean;
+    var opts=STATUSES.map(function(s){return '<option value="'+s+'"'+(s===st?' selected':'')+'>'+s+'</option>';}).join('');
+    var tag=isAdmin?'<span class="lr-tag" style="background:'+c.bg+';color:'+c.tx+'">'+l.artist+'</span>':'';
+    html+='<div class="lr"><div class="lr-row1"><div class="lr-dot" style="background:'+c.dot+'"></div><div class="lr-name">'+l.name+'</div>'+tag+'<div class="lr-date">'+(l.date?l.date.substring(5):'')+'</div></div><div class="lr-info">'+l.email+' &middot; '+(l.city||'')+'</div><div class="lr-actions"><a class="ab ab-email" href="mailto:'+l.email+'">&#9993; Email</a><a class="ab ab-sms" href="sms:'+num+'">&#128172; Text</a><a class="ab ab-call" href="tel:'+num+'">&#128222; Call</a></div><select class="lr-status" style="color:'+(STCOL[st]||'#111')+'" onchange="chSt(\''+l.id+'\',this.value,this)">'+opts+'</select></div>';
+  });
+  document.getElementById('leads').innerHTML=html;
+}
+function setF(f,btn){fA=f;document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');renderLeads();}
+function setSrch(v){srch=v;renderLeads();}
+function chSt(id,st,sel){
+  allLeads=allLeads.map(function(l){return l.id===id?Object.assign({},l,{status:st}):l;});
+  sel.style.color=STCOL[st]||'#111';
+  fetch(API+'?action=updateStatus&id='+encodeURIComponent(id)+'&status='+encodeURIComponent(st));
+}
+</script>
+</body>
+</html>
